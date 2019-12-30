@@ -1,7 +1,7 @@
 ## 12월 30일 내용
 
 
-### Q1. getSnapshotBeforeUpdate이 가지는 의미와 사용법
+### (7장) Q1. getSnapshotBeforeUpdate이 가지는 의미와 사용법
 
 예시로 스크롤 위치를 위해 쓰인다는 말이 있지만 구체적으로 어떤 방식으로 사용되는지 이해가 안됐으나 
 React 공식 문서에서 그 사용법을 알 수 있었다.
@@ -47,7 +47,38 @@ state의 변화가 반영되어 있지만 실제 화면에 뿌려지기 전후�
 그 외에도 DOM 변화와 관련된 업데이트에 대해서 사용할 수 있을 것이다.
 
 
-### 
+### (4장) 이벤트핸들링 함수의 다른 방안
+
+기존의 target.name을 활용한 onChange 함수에서 더 많은 인자를 받을 수 있는 함수로 변환해볼 수 있다.
+
+
+``` javascript
+  const [data, setData] = useState({user:'cho', pw: 123});
+  
+  // key를 받아 해당 key값의 state를 변경
+  const onChange = key => e => {
+    setData({...data, [key]: e.target.value});
+  };
+  
+  const onChange2 = e => {
+    setData({...data, [e.target.name]: e.target.value});
+  };
+  
+  return (<>
+    <input
+    type="text"
+    placeholder="유저명"
+    value={data.user}
+    onChange={onChange("user")} // {(event) => (onChnage("user"))(event)} 도 똑같이 동작한다.
+  />
+   <input
+    type="text"
+    name="pw"
+    placeholder="패스워드"
+    value={data.pw}
+    onChange={onChange2}
+  />)
+```
 
 
 
