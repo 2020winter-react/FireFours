@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## 안녕하세요. 리액트 스터디입니다.
 
 You can use the [editor on GitHub](https://github.com/2020winter-react/study/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
