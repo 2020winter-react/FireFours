@@ -81,6 +81,62 @@ state의 변화가 반영되어 있지만 실제 화면에 뿌려지기 전후�
 ```
 
 
+### (8장) useCallback 함수에 대한 심층 이해
+
+ useCallback 함수는 useMemo 함수와 비슷하게 어떤 state의 변화가 생겼을 때에만 함수가 생성되도록 하는 Hook이다.
+ 이해가 힘들었던 것은 어떤 것은 처음 렌더링 될 때만 함수를 생성하고, 어떤 함수는 state 변화에 따라 함수를 생성하는데
+ 이 차이가 무엇인지 와닿지 않았다. 이 그 두 함수는 아래와 같다.
+
+``` javascript
+  const onChange = useCallback(e => {
+    setNumber(e.target.value);
+    console.log('number:', number);
+  }, []); // 컴포넌트가 처음 렌더링 될 때만 함수 생성
+
+  const onInsert = useCallback(() => {
+    const nextList = list.concat(parseInt(number));
+    setList(nextList);
+    setNumber('');
+    inputEl.current.focus();
+  }, [number, list]); // number 혹은 list 가 바뀌었을 때만 함수 생성
+
+  return (
+    <div>
+      <input value={number} onChange={onChange} ref={inputEl} />
+      <button onClick={onInsert}>등록</button>
+      <ul>
+        {list.map((value, index) => (
+          <li key={index}>{value}</li>
+        ))}
+      </ul>
+      <div>
+        <b>평균값:</b> {avg}
+      </div>
+    </div>
+  );
+
+```
+
+이를 더 잘 이해하기 위해 몇가지 실험을 하였다. 
+먼저 `console.log('number:', number);` 를 통해 onChnage 속에서 number state를 보면 어떤 값을 입력하더라도 값이 없다고 나온다.
+**즉 onChange가 처음 생겼을 때 number 상태 그대로를 가지고 있다** 반면 onInsert는 실행할 때마다 list, number의 값이 바뀌었다.
+그리고 onChnage 두번째 인자로 `[number]`를 넣으면 number가 계속 변한다.
+
+두번째로 onInsert의 두번째 인자를 모두 삭제하면 아래와 같이 된다.
+
+```
+  const onInsert = useCallback(() => {
+    const nextList = list.concat(parseInt(number));
+    setList(nextList);
+    setNumber('');
+    inputEl.current.focus();
+  }, []); // 컴포넌트가 처음 렌더링 될 때만 함수 생성
+
+```
+
+위 상태에선 "Warning: Received NaN for the `children` attribute. If this is expected, cast the value to a string." 란 오류가 뜬다. 이 말인 즉슨 Nan 을 li 에서 받아 경고창을 보냈다. 즉 위 함수에서 parseInt(number)의 number가 Nan이였기 때문이다. number의 처음상태가 빈값이라 그 이후에도 실행시켜도 빈값이 반환된 것이다. 
+
+> 정리하자면, 어떤 state의 값을 이용하여 새로운 값으로 변환하는 것이라면 state 변화에 따라 함수를 생성하고, static 하게 단순한 함수 실행이라면 처음 렌더링될때만 함수가 생성하도록 한다.
 
 
 
