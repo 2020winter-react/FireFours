@@ -4,7 +4,7 @@ You can use the [editor on GitHub](https://github.com/2020winter-react/study/edi
 
 |No. |Data|Description| Link|
 |---|---|---|---|
-|1|12/30|Event Handling, ref, Lifecycle, Hooks|[링크](2020winter-react.github.io/study/1230)|
+|1|12/30|Event Handling, ref, Lifecycle, Hooks|[링크](https://2020winter-react.github.io/study/1230)|
 |||||
 
 
