@@ -13,7 +13,7 @@
 
 |리액트를 다루는 기술 (개정판)|
 |--|
-||
+|저자: 벨로퍼트|
 
 <img src="https://images.velog.io/post-images/velopert/c5db3e20-c7a2-11e9-8c2d-7f24fb40725e/-2019-08-26-10.42.17.png" width="300" height="300">
 
