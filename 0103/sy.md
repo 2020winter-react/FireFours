@@ -61,7 +61,15 @@ setMessage(p => {
 Warning: This synthetic event is reused for performance reasons. If you're seeing this, you're accessing the property `target` on a released/nullified synthetic event. This is set to null. If you must keep the original synthetic event around, use event.persist(). See https://fb.me/react-event-pooling for more information.
 ```
 
-[공식 ](https://reactjs.org/docs/events.html#event-pooling)
+[공식 문서의 event pooling](https://reactjs.org/docs/events.html#event-pooling) 설명에 따르면 synthetic event 객체 자체가 재사용되면서 모든 속성이 비워지기 (nullified) 때문에 이를 비동기적인 방식으로 사용하는 것은 불가능하다는 것이다. 여기서 비동기적인 방식이 setMessage가 되므로 이를 고치려면 미리 const로 해당 값을 저장하고 이를 업데이트 해야한다. 코드는 아래와 같다.
+
+
+```jsx
+const msg = e.target.value;
+setMessage(p => {
+  return { ...p, message: msg };
+}); 
+```
 
 
 
