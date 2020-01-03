@@ -43,7 +43,9 @@ useState에 대해 찾아보며 몇가지 사용의 유의점이 있었다.
 
 ### 1. State를 나눌 때는 주로 같이 update가 일어나는 것으로 묶어라
 
-`useState({row:10, col:20, tuple:200})` 이런 식으로 여러 개의 상태 값을 오브젝트 형식으로 하나의 state에서 관리할 수도 있고 `useState(10), useState(20), useState(200)` 이런 식으로 상태값을 모두 쪼개어 관리도 가능하다. 이에 대한 기준은 [리액트 공식문서](https://reactjs.org/docs/hooks-faq.html#should-i-use-one-or-many-state-variables)에서 설명하고 있다. 
+`useState({row:10, col:20, tuple:200})` 이런 식으로 여러 개의 상태 값을 오브젝트 형식으로 하나의 state에서 관리할 수도 있고
+
+`useState(10), useState(20), useState(200)` 이런 식으로 상태값을 모두 쪼개어 관리도 가능하다. 이에 대한 기준은 [리액트 공식문서](https://reactjs.org/docs/hooks-faq.html#should-i-use-one-or-many-state-variables)에서 설명하고 있다. 
 
 결론은 상태 업데이트에서 기존의 값을 복사하고 이를 업데이트 하는 것에 오버헤드가 크니, 주로 상태 업데이트가 같이 일어나는 상태값 위주로 묶어서 관리하라는 것이다. 너무 쪼개 놓아도 각각을 업데이트 하는 것에 오버헤드가 크고, 너무 하나의 몰아 넣는 것도 기존의 값을 복사하는 것에 오버헤드가 크므로 분리시켜주는 것이 중요하다.
 
