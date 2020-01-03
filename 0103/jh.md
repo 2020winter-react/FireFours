@@ -6,6 +6,32 @@ height는 렌더링된 할 일 리스트들의 높이를 모두 합친, 전체 �
 ### rowRenderer함수에서 style의 역할 (p.308)
 컴포넌트 최적화를 위해 react-virtualized에서 제공하는 List 컴포넌트를 사용했는데, 여기에서 rowRenderer 함수를 제공한다. rowRenderer 함수는 List 컴포넌트에서 각 TodoListItem을 렌더링하는 데 사용된다.
 
+```javascript
+const TodoList = ({ todos, onRemove, onToggle }) => {
+	const rowRenderer = useCallback(
+		({ index, key, style }) => {
+			const todo = todos[index];
+			return (
+				<TodoListItem
+					todo={todo}
+					key={key}
+					onRemove={onRemove}
+					onToggle={onToggle}
+					style={style}
+				/>
+			);
+		},
+		[onRemove, onToggle, todos],
+	);
+
+	return (
+		<List
+			(...)
+			rowRenderer={rowRenderer}
+		/>
+	);
+};
+```
 이 rowRenderer 함수는 다양한 파라미터를 받아올 수 있는데, 그 중 style props를 받아와 TodoListItem에도 사용할 수 있다. TodoListItem 컴포넌트의 최상단의 태그에, props로 받아온 style을 적용시켜주면, 투두리스트가 잘 렌더링된다.
 
 궁금했던 점은, 여기서 style이 어떤 역할을 하는지에 대해서였다. style을 지우고 리스트를 스크롤해보니, 아래의 다음 투두리스트들이 렌더링되지 않고, 기존의 위의 투두리스트들만 보여졌다.
