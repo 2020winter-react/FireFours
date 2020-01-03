@@ -1,3 +1,5 @@
+<img src="/fire.png">
+
 ## 안녕하세요. 리액트 스터디입니다. (2019.12.26~)
 
 |No. |Data|Description| Link|
