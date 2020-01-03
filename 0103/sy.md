@@ -1,7 +1,7 @@
 ## P.298 useState의 함수형 업데이트
 
-useState에서 새로운 상태 값을 넣어 상태를 업데이트 시켜줄 수도 있지만, 아예 업데이트는 함수를 넣어줄 수도 있다.<br>
-이를 함수형 업데이트라 부르며 여러 장점이 존재한다. 특히 책에서 소개하는 장점은 이 함수형 업데이트를 통해 성능을 크게 올릴 수 있다는 점이었다.
+useState에서 새로운 상태 값을 넣어 상태를 업데이트 시켜줄 수도 있지만, 아예 업데이트는 함수를 넣어줄 수도 있다. 이를 함수형 업데이트라 부르며 여러 장점이 존재한다. 비슷하게 함수형 업데이트에 대한 언급이 클래스 컴포넌트의 setState에서도 나온다. 이때 함수형 업데이트의 장점은 **이전 값을 받아 update**하는 것으로 setState의 비동기성 때문에 [일어나는 문제](https://link.medium.com/yjBS2DnuW2)에 대한 해결 방안이였다.<br>
+특히 책에서 소개하는 장점은 이 함수형 업데이트를 통해 성능을 크게 올릴 수 있다는 점이었다.
 
 > 단순히 `()=>` 를 추가하는 것으로 어떻게 크게 성능을 올릴 수 있었을까? 
 
@@ -37,6 +37,32 @@ const onRemove = useCallback(id => {
 함수형 업데이트는 이러한 문제를 해결하고 새롭게 업데이트되는 `todos`를 그때그때 함수로써 입력받아 실행이 가능하다. <br>
 위와 같이 함수형 업데이트는 useCallback의 함수 생성을 단 한번만 해도 되는 것으로 개선시켜준다. 비슷한 효과를 주는 것이 useReducer로 이것 또한 상태의 업데이트 로직을 분리하고 업데이트에 따른 생성을 막아 성능 개선을 꾀할 수 있다.
 
+## useState 여러 가지 유의점
+
+useState에 대해 찾아보며 몇가지 사용의 유의점이 있었다.
+
+### 1. State를 나눌 때는 주로 같이 update가 일어나는 것으로 묶어라
+
+`useState({row:10, col:20, tuple:200})` 이런 식으로 여러 개의 상태 값을 오브젝트 형식으로 하나의 state에서 관리할 수도 있고 `useState(10), useState(20), useState(200)` 이런 식으로 상태값을 모두 쪼개어 관리도 가능하다. 이에 대한 기준은 [리액트 공식문서](https://reactjs.org/docs/hooks-faq.html#should-i-use-one-or-many-state-variables)에서 설명하고 있다. 
+
+결론은 상태 업데이트에서 기존의 값을 복사하고 이를 업데이트 하는 것에 오버헤드가 크니, 주로 상태 업데이트가 같이 일어나는 상태값 위주로 묶어서 관리하라는 것이다. 너무 쪼개 놓아도 각각을 업데이트 하는 것에 오버헤드가 크고, 너무 하나의 몰아 넣는 것도 기존의 값을 복사하는 것에 오버헤드가 크므로 분리시켜주는 것이 중요하다.
+
+### 2. event는 재사용될시 null로 변하므로 const로 값을 저장하라
+
+```jsx
+setMessage(p => {
+  return { ...p, message: e.target.value };
+}); // Doesn't work
+
+```
+위와 같이 useState를 사용하면 다음과 같은 오류가 난다. 
+
+```
+Warning: This synthetic event is reused for performance reasons. If you're seeing this, you're accessing the property `target` on a released/nullified synthetic event. This is set to null. If you must keep the original synthetic event around, use event.persist(). See https://fb.me/react-event-pooling for more information.
+```
+
+[공식 ](https://reactjs.org/docs/events.html#event-pooling)
 
 
-“setState 를 함수형으로 사용하기” - “setState 를 함수형으로 사용하기” by 김토성 https://link.medium.com/yjBS2DnuW2
+
+
