@@ -4,8 +4,18 @@
 |---|---|---|---|
 |1|12/30|Event Handling, ref, Lifecycle, Hooks|[링크](https://2020winter-react.github.io/study/1230)|
 |2|01/03|Styling, Todo List, Optimization, Immer|[링크](/study/0103)|
+|3|01/12|Router, Axios, Context API, Redux||
+|4|01/19|Redux Middleware, Code Splitting, SSR||
+|5|||||
 
 
+## 교재
+
+|리액트를 다루는 기술 (개정판)|
+|--|
+|저자: 벨로퍼트|
+
+<img src="https://images.velog.io/post-images/velopert/c5db3e20-c7a2-11e9-8c2d-7f24fb40725e/-2019-08-26-10.42.17.png" width="300" height="300">
 
 
 ## 스터디원
