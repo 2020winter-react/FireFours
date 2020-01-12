@@ -79,8 +79,8 @@ const ColorProvider = ({ children }) => {
   );
 };
 ```
-
-일단 App.js에서 사용되는 코드를 줄일 수 있다. (ColorContext.Provider 에서 ColorProvider 로.)
-또한 <ColorContext.Provider>에서는 변화시킬 value을 props로 직접 주었는데, ColorProvider에서는 변화시킬 값을 따로 관리할 수 있다. 여기서 특히 value를 state와 actions로 나누어 관리할 수 있다는 점이 장점이다.
+ColorProvider를 썼을 때의 이점은 다음과 같다.
+1) App.js에서 사용되는 코드가 깔끔해진다.
+2) <ColorContext.Provider>에서는 변화시킬 value을 props로 직접 주었는데, ColorProvider에서는 변화시킬 값을 따로 관리할 수 있다. 이렇게 value를 props로 직접 전달하지 않고 따로 관리함으로써, context의 value에 상태값 뿐만 아니라 동적인 함수도 용이하게 전달해줄 수 있다. 또한 value를 state와 actions로 나누어 관리할 수 있다는 점도 ColorProvider의 장점이다. 나누어 관리하는 것은 필수사항은 아니지만 이후 편리한 context값 사용을 위해 해놓는 것이 좋다.
 
 <hr />
