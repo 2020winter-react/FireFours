@@ -6,7 +6,7 @@
 |---|---|---|---|
 |1|12/30|Event Handling, ref, Lifecycle, Hooks|[링크](https://2020winter-react.github.io/FireFours/1230)|
 |2|01/03|Styling, Todo List, Optimization, Immer|[링크](https://2020winter-react.github.io/FireFours/0103)|
-|3|01/12|Router, Axios, Context API, Redux||
+|3|01/12|Router, Axios, Context API, Redux|[링크](https://2020winter-react.github.io/FireFours/0112)|
 |4|01/19|Redux Middleware, Code Splitting, SSR||
 |5|||||
 
@@ -25,4 +25,4 @@
 
 |유주현|변주영|변형욱|조상연|
 |---|---|---|---|
-|12/30<br>스터디 내용 정리|01/03<br>스터디 내용 정리|||
+|12/30<br>스터디 내용 정리|01/03<br>스터디 내용 정리||01/12<br>스터디 내용 정리|
