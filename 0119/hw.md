@@ -4,7 +4,7 @@
 #### - 미들웨어란?
 ##### 리덕스 미들웨어는 액션을 디스패치했을 때 리듀서에서 이를 처리하기에 앞서 사전에 지정된 작업들을 실행합니다. 미들웨어는 액션과 리듀서 사이의 중간자라고 볼 수 있습니다. 
 
-![pic](1_BHUKvOmqPjJHpRY1wp1YFw.png)
+![pic](https://raw.githubusercontent.com/2020winter-react/FireFours/master/0119/1_BHUKvOmqPjJHpRY1wp1YFw.png)
 
 ##### 액션 발생 -> 미들웨어에서 필요한 데이터를 API서버를 통해 가져옴 -> 해당 액션에 따른 리듀서 함수 실행 -> 업데이트된 내용과, 받아온 데이터를 store에 저장 (이 과정을 렌더링시 계속 반복)
 
