@@ -8,7 +8,7 @@
 |2|01/03|Styling, Todo List, Optimization, Immer|[링크](https://2020winter-react.github.io/FireFours/0103)|
 |3|01/12|Router, Axios, Context API, Redux|[링크](https://2020winter-react.github.io/FireFours/0112)|
 |4|01/19|Redux Middleware, Code Splitting, SSR|[링크](https://2020winter-react.github.io/FireFours/0119)|
-|5|01/28|Backend KOA|||
+|5|01/28|Backend KOA, MongoDB, JWT|[링크](https://2020winter-react.github.io/FireFours/0128)|
 
 
 ## 교재
